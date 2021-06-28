@@ -1,33 +1,22 @@
 import React, { useEffect, useState } from 'react';
-import { useLocation } from 'umi'
 import { Form, Input, Button, Checkbox } from 'antd';
-import { UserOutlined, LockOutlined, CheckCircleOutlined, StopOutlined } from '@ant-design/icons';
+import { UserOutlined, LockOutlined, StopOutlined, LoadingOutlined } from '@ant-design/icons';
 import styles from './style.less'
 
-interface UserInfos {
+export interface UserInfos {
   username: string;
   password: string;
 }
 
-const LoginForm = () => {
+const LoginForm = (props: any) => {
   const [loadingFlag, setLoadingFlag] = useState<boolean>(false)
-  const [submitButton, setSubmitButton] = useState('登录卜洛戈')
+  const [submitButton, setSubmitButton] = useState('BLOG HOME 登录')
   const [loginIcon, setloginIcon] = useState<React.ReactNode>(<></>)
-  const [userInfos, setUserInfos] = useState<UserInfos>({ username: '', password: '' })
-
-
-  // 进入页面首先去获取用户信息，当用户信息存在时，直接调用接口进行登录检查，通过立即放行
-  useEffect(() => {
-    const location = localStorage?.getItem('__ctoken__') || ''
-    // if()
-    
-  }, [userInfos])
-
 
   // 登录按钮的 文字和图标还原
   useEffect(() => {
     const timer = setTimeout(() => {
-      setSubmitButton('登录卜洛戈')
+      setSubmitButton('BLOG HOME 登录')
       setloginIcon(<></>)
     }, 4000)
     return () => clearTimeout(timer)
@@ -39,14 +28,21 @@ const LoginForm = () => {
     setLoadingFlag(true)
     setSubmitButton('登录中')
     setTimeout(() => {
-      setSubmitButton('登录失败')
+      setSubmitButton('登录失败: 用户名或密码不正确')
       setloginIcon(<StopOutlined />)
       setLoadingFlag(false)
     }, 3000)
   };
 
 
-  return (
+  return (<>
+    <div className={styles['login-brand-list']}>
+      <div className={styles['login-brand-title']}>茶都醉何况酒</div>
+      <span className={styles['login-brand-blog']}>发布和推流端 <LoadingOutlined style={
+        { color: '#1890ff' }
+      } /></span>
+    </div>
+    <div className={styles['login-brand-en']}>BLOG HOME TO LOGIN</div>
     <Form
       name="normal_login"
       className="login-form"
@@ -103,20 +99,9 @@ const LoginForm = () => {
         </Button  >
       </Form.Item>
     </Form>
-  )
+  </>)
 }
 
-const Login: React.FC = () => {
-  return (
-    <div className={styles['login-form']}>
-      <div>BOLG</div>
-      <div>卜洛戈</div>
-      <div className={styles['login-container']}>
-        {/* 登录form表单 */}
-        <LoginForm />
-      </div>
-    </div>
-  )
-}
 
-export default Login
+
+export default LoginForm
