@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import { Form, Input, Button, Checkbox } from 'antd';
-import { UserOutlined, LockOutlined, StopOutlined, LoadingOutlined } from '@ant-design/icons';
+import { Form, Input, Button, Checkbox, Tag } from 'antd';
+import { UserOutlined, LockOutlined, StopOutlined, LoadingOutlined, FireFilled } from '@ant-design/icons';
 import styles from './style.less'
 
 export interface UserInfos {
@@ -99,6 +99,14 @@ const LoginForm = (props: any) => {
         </Button  >
       </Form.Item>
     </Form>
+    <div className={styles['login-form-alert']}>
+      <Tag icon={<FireFilled />} color="success">
+        提示
+      </Tag>
+      新用户注册需要邀请码才能加入，邀请码请关注首页
+      <a href="#">邀请码抽签</a>
+      板块，中签后需要在一周内注册完毕。
+    </div>
   </>)
 }
 

@@ -1,9 +1,11 @@
 import React from 'react'
-import Login from '@/components/Login'
+import Header from '@/pages/Header'
+import style from './style.less'
 export default function index() {
     return (
-        <Login>
-            
-        </Login>
+        <div className={style['home-container']}>
+        {/* 顶部导航菜单 */}
+        <Header/>
+        </div>
     )
 }
